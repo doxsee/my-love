@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff0000"> <!-- Optional: matches red cross -->
+    <title>My Love</title>
+    <link rel="manifest" href="manifest.json"> <!-- Links to manifest -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+        }
+        .cross {
+            position: relative;
+            width: 100px;
+            height: 150px;
+        }
+        .vertical {
+            position: absolute;
+            width: 20px;
+            height: 150px;
+            background-color: #ff0000;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .horizontal {
+            position: absolute;
+            width: 100px;
+            height: 20px;
+            background-color: #ff0000;
+            top: 33%;
+            transform: translateY(-50%);
+        }
+        @media (max-width: 768px) {
+            .cross { width: 80px; height: 120px; }
+            .vertical { width: 16px; height: 120px; }
+            .horizontal { width: 80px; height: 16px; }
+        }
+        @media (max-width: 480px) {
+            .cross { width: 60px; height: 90px; }
+            .vertical { width: 12px; height: 90px; }
+            .horizontal { width: 60px; height: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cross">
+        <div class="vertical"></div>
+        <div class="horizontal"></div>
+    </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(() => console.log('Service Worker registered'))
+                    .catch(err => console.error('Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>
